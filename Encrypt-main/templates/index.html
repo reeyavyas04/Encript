@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encrypt PDF</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Encrypt Your PDF</h1>
+        <form id="pdf-form" action="/encrypt" method="POST" enctype="multipart/form-data">
+            <input type="file" name="pdf_file" accept="application/pdf" required>
+            <input type="password" name="password" placeholder="Enter Password" required>
+            <input type="text" name="watermark_name" placeholder="Enter Watermark Text" required>
+            <input type="text" name="custom_pdf_name" placeholder="Enter Custom PDF Name" required>
+            <button type="submit">Encrypt & Download</button>
+        </form>
+        <p class="message">Upload a PDF and provide a password to encrypt it.</p>
+    </div>
+    <script>
+        document.getElementById('pdf-form').addEventListener('submit', function (e) {
+            const password = document.querySelector('input[name="password"]').value;
+            if (password.length < 6) {
+                e.preventDefault();
+                alert("Password must be at least 6 characters long.");
+            }
+        });
+    </script>
+</body>
+</html>
